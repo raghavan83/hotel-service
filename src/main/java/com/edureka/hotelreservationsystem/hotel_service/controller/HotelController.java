@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edureka.hotelreservationsystem.hotel_service.entity.HotelRoom;
@@ -27,6 +28,18 @@ public class HotelController {
 	@PostMapping
 	public ResponseEntity<HotelRoom> addHotelRoom(@RequestBody HotelRoom hotelRoom) {
 		return ResponseEntity.ok(this.hotelService.createHotelRoom(hotelRoom));
+	}
+
+	@PostMapping("/check-availability")
+	public ResponseEntity<Boolean> checkAvailability(@RequestParam Long roomId) {
+		boolean isAvailable = hotelService.checkAvailability(roomId);
+		return ResponseEntity.ok(isAvailable);
+	}
+
+	@PostMapping("/reserve")
+	public ResponseEntity<Boolean> reserveRoom(@RequestParam Long roomId) {
+		hotelService.reserveHotelRoom(roomId);
+		return ResponseEntity.ok(true);
 	}
 
 	// Retrieve all hotelRooms

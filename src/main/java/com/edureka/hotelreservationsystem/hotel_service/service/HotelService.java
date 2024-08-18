@@ -13,6 +13,20 @@ public class HotelService {
 
 	@Autowired
 	private HotelRepository hotelRepository;
+	
+	public boolean checkAvailability(Long id) {
+        HotelRoom hotelRoom = hotelRepository.findById(id).orElse(null);
+        return hotelRoom != null && hotelRoom.isAvailable();
+    }
+	
+	public HotelRoom reserveHotelRoom(Long id) {
+		HotelRoom hotelRoom = hotelRepository.findById(id).orElse(null);
+        if (hotelRoom != null && hotelRoom.isAvailable()) {
+        	hotelRoom.setAvailable(false);
+        	hotelRepository.save(hotelRoom);
+        }
+        return hotelRoom;
+    }
 
 	public HotelRoom createHotelRoom(HotelRoom hotelRoom) {
 		return hotelRepository.save(hotelRoom);

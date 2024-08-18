@@ -1,5 +1,6 @@
 package com.edureka.hotelreservationsystem.hotel_service.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,59 +20,75 @@ public class HotelRoom {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(name = "room_type", nullable = false)
 	private String roomType;
-	private Long quantity;
-	private Double amount;
+	
+	@Column(name = "price", nullable = false)
+    private Double price;
+	
+	@Column(name = "is_available", nullable = false)
+    private boolean isAvailable;
+    
 	public HotelRoom() {
 		super();
 	}
+
 	/**
 	 * @return the id
 	 */
 	public Long getId() {
 		return id;
 	}
+
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	/**
 	 * @return the roomType
 	 */
 	public String getRoomType() {
 		return roomType;
 	}
+
 	/**
 	 * @param roomType the roomType to set
 	 */
 	public void setRoomType(String roomType) {
 		this.roomType = roomType;
 	}
+
 	/**
-	 * @return the quantity
+	 * @return the price
 	 */
-	public Long getQuantity() {
-		return quantity;
+	public Double getPrice() {
+		return price;
 	}
+
 	/**
-	 * @param quantity the quantity to set
+	 * @param price the price to set
 	 */
-	public void setQuantity(Long quantity) {
-		this.quantity = quantity;
+	public void setPrice(Double price) {
+		this.price = price;
 	}
+
 	/**
-	 * @return the amount
+	 * @return the isAvailable
 	 */
-	public Double getAmount() {
-		return amount;
+	public boolean isAvailable() {
+		return isAvailable;
 	}
+
 	/**
-	 * @param amount the amount to set
+	 * @param isAvailable the isAvailable to set
 	 */
-	public void setAmount(Double amount) {
-		this.amount = amount;
+	public void setAvailable(boolean isAvailable) {
+		this.isAvailable = isAvailable;
 	}
+	
 
 }
